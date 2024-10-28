@@ -1,0 +1,11 @@
+---
+title: "Homepage"
+comments: false
+---
+
+# Welcome to My Website!
+
+Welcome! My name is Yicheng Shen, a PhD student in the Department of Biostatistics at JHU.\
+Feel free to explore this (newly created) site to learn more about me.
+
+![Here is me at the ENAR conference this year!](ENAR.jpg)

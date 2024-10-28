@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "indexbackup.html",
+    "href": "indexbackup.html",
+    "title": "Homepage",
+    "section": "",
+    "text": "Welcome to My Website!\nWelcome! My name is Yicheng Shen, a PhD student in the Department of Biostatistics at JHU.\nFeel free to explore this (newly created) site to learn more about me.\n\n\n\nHere is me at the ENAR conference this year!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yicheng Shen",
+    "section": "",
+    "text": "Welcome to My Website!\nWelcome! My name is Yicheng Shen, a PhD student in the Department of Biostatistics at Johns Hopkins Bloomberg School of Public Health.\nFeel free to explore this (newly created) site to learn more about me.\n\nResearch Interests:\nBayesian hierarchical modeling and diagnostics, (network) meta-analysis, latent variable modeling, network analysis, causal inference, interdisciplinary research with applied statistics in health and social sciences.\nIf you every want to connect with me, please refer to any of the links."
+  },
+  {
+    "objectID": "example_analysis.html",
+    "href": "example_analysis.html",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "",
+    "text": "There are several interesting default datasets included in popular packages, for instance mpg from ggplot2 (Wickham 2016). In this analysis, I explore the relationship between vehicle characteristics (like engine displacement and highway mileage) and fuel efficiency. The intended audience is for automotive industry looking for insights into vehicle fuel economy.\nThe mpg dataset contains information about different models of cars and their fuel consumption. It can be accessed via the mpg dataset documentation here.\n\n\n\nFuel efficiency is a big consideration for consumers these days."
+  },
+  {
+    "objectID": "example_analysis.html#introduction",
+    "href": "example_analysis.html#introduction",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "",
+    "text": "There are several interesting default datasets included in popular packages, for instance mpg from ggplot2 (Wickham 2016). In this analysis, I explore the relationship between vehicle characteristics (like engine displacement and highway mileage) and fuel efficiency. The intended audience is for automotive industry looking for insights into vehicle fuel economy.\nThe mpg dataset contains information about different models of cars and their fuel consumption. It can be accessed via the mpg dataset documentation here.\n\n\n\nFuel efficiency is a big consideration for consumers these days."
+  },
+  {
+    "objectID": "example_analysis.html#data-dictionary",
+    "href": "example_analysis.html#data-dictionary",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "2 Data Dictionary",
+    "text": "2 Data Dictionary\nSome of the key variables in the dataset that I plan to utilize are:\n\nmanufacturer: Manufacturer name of the vehicle\ndispl: Engine displacement in liters\nhwy: Highway miles per gallon\nclass: Type of car (SUV, compact, etc.)\n\n\n\n\n\n\n\nNote\n\n\n\nLarger engines usually produce more power but probably also need to burn more fuel and air (Taylor 2008).\nHere I define efficiency as hwy/displ."
+  },
+  {
+    "objectID": "example_analysis.html#data-wrangling",
+    "href": "example_analysis.html#data-wrangling",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "3 Data Wrangling",
+    "text": "3 Data Wrangling\n\ndata(\"mpg\")\nmpg_filtered &lt;- mpg %&gt;%\n  filter(class != \"2seater\") %&gt;%\n  mutate(efficiency = hwy / displ) %&gt;% \n  group_by(manufacturer) %&gt;%\n  summarize(`avg efficiency` = mean(efficiency, na.rm = TRUE)) %&gt;%\n  arrange(desc(`avg efficiency`))\n\n\nmpg_filtered %&gt;%\n  kbl(\n    caption = \"Average Fuel Efficiency by Manufacturer\",\n    col.names = c(\"Manufacturer\", \"Average Efficiency (hwy / displ)\"),\n    align = \"lc\",\n    booktabs = TRUE\n  ) %&gt;%\n  kable_styling(\n    full_width = FALSE,\n    bootstrap_options = c(\"striped\", \"hover\", \"condensed\", \"responsive\"),\n    position = \"center\"\n  ) %&gt;%\n  column_spec(2, bold = TRUE) \n\n\n\nAverage Fuel Efficiency by Manufacturer\n\n\nManufacturer\nAverage Efficiency (hwy / displ)\n\n\n\n\nhonda\n19.126543\n\n\nvolkswagen\n13.565472\n\n\nhyundai\n11.317965\n\n\naudi\n11.218609\n\n\nsubaru\n10.431169\n\n\ntoyota\n9.743804\n\n\nnissan\n8.179720\n\n\npontiac\n6.883973\n\n\nchevrolet\n5.379397\n\n\ndodge\n4.411284\n\n\nford\n4.365444\n\n\njeep\n4.141776\n\n\nmercury\n4.132609\n\n\nland rover\n3.846873\n\n\nlincoln\n3.148148"
+  },
+  {
+    "objectID": "example_analysis.html#visualization",
+    "href": "example_analysis.html#visualization",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "4 Visualization",
+    "text": "4 Visualization\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_smooth(aes(x = displ, y = hwy), method = \"lm\", formula = y ~ x, se = F) + \n  geom_point() + \n  labs(\n    title = \"Engine Displacement vs Highway Mileage\",\n    subtitle = \"Larger engines generally have lower mileage\",\n    x = \"Engine Displacement (liters)\", y = \"Highway Miles per Gallon\",\n    caption = \"There is overall a negative association between engine displacement and highway mileage.\"\n  )\n\n\n\n\n\n\n\n\n\n\nHere the overall relationship is consistent with that within each class. Sometimes a trend can appear in several groups but reverses when the groups are combined, known as the Simpson’s paradox (Wagner 1982).\n\nggplot(mpg, aes(x = hwy, fill = class)) +\n  geom_histogram(bins = 25) +\n  facet_wrap(~class) +\n  labs(\n    title = \"Distribution of Highway Mileage by Car Class\",\n    x = \"Highway Miles per Gallon\", y = \"Frequency\",\n    caption = \"SUV and Pickup cars are likely to cost far more fuels on highways than compact and subcompact cars.\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nFaceting using facet_wrap() in ggplot2 plot multiple small plots side-by-side, allowing us to visualize data grouped by categories, making comparisons easier.\n\n\n\nggplot(mpg_filtered, aes(x = reorder(manufacturer, `avg efficiency`), y = `avg efficiency`)) +\n  geom_col(fill = \"skyblue\") +\n  coord_flip() +\n  labs(\n    title = \"Average Fuel Efficiency by Manufacturer\",\n    x = \"Manufacturer\", y = \"Average Efficiency (hwy / displ)\",\n    caption = \"Honda stands out among all manufacturers in terms of average fuel efficiency.\"\n  )"
+  },
+  {
+    "objectID": "example_analysis.html#conclusion",
+    "href": "example_analysis.html#conclusion",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nFrom this simple analysis, I can observe that engine displacement can definitively inversely impact highway mileage. Honda cars’ performances is distinguishable among all manufacturers in terms of average fuel efficiency. Manufacturers focusing on smaller engines on compact cars tend to achieve better fuel efficiency. Further analysis could include electric and hybrid vehicles to see how they compare."
+  },
+  {
+    "objectID": "example_analysis.html#function-summary",
+    "href": "example_analysis.html#function-summary",
+    "title": "Example Analysis of the MPG Dataset",
+    "section": "6 Function Summary",
+    "text": "6 Function Summary\nHere is a list of functions I used from each package:\nFrom dplyr and tidyr: filter(), mutate(), group_by(), summarize(), arrange()\nFrom ggplot2: geom_point(), geom_smooth(), geom_col(), geom_histogram(), facet_wrap()"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "My Path\nI grew up in Wuxi, a relatively small (nickname “little Shanghai”) but definitely beautiful and fast-developing city in eastern China. With the desire to explore the unknown and various interesting parts of the world, I went to Carleton College in the U.S. for my undergraduate education. The four-year experience of living and studying in Northfield, Minnesota is such an inspiring, meaningful, and memorable journey for me both mentally and physically. I obtained my B.A. degree in both Statistics and Political Science and graduated with Magna Cum Laude in 2022. My senior theses both received the honor of distinctions.\nDuring my time as an M.S. student in Statistical Science at Duke University, I have actively collaborated on research projects under the guidance of Dr. Alexander Volfovsky and Dr. Hwanhee Hong. These academic experiences have ignited my passion for exploring intricate topics, including ideal point estimation methods, the practical applications and diagnostics of Bayesian hierarchical modeling, and the complexities of causal inference problems. I am acutely aware of the boundless knowledge and challenges that lie ahead in these expansive fields, which continually drive me to dedicate more effort to my academic pursuits.\nApart from academic work, my hobbies are karate, cooking, volunteer work, and book preservation. The last skill came from my four years of working as a part-time student preservation assistant at the Laurence McKinley Gould Library:)\n\n\n\nEducational Experience\nJohns Hopkins University, Baltimore, MD\nPh.D. in Biostatistics (2024 - present)\nDuke University, Durham, NC\nM.S. in Statistical Science (2022 - 2024)\nMentors: Dr. Hwanhee Hong & Dr. Alexander Volfovsky\nCarleton College, Northfield, MN\nB.A. in Statistics & Political Science (2018 - 2022)\nMentors: Dr. Andrew Poppick & Dr. Greg Marfleet\n\nPlease feel free to download my CV here to learn more about my background and experience.\n\nCurriculum Vitae"
+  }
+]

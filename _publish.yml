@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 260bf026-e103-4a3f-97e7-9199446c7ff4
+      url: 'https://yichengshen.quarto.pub/my-very-new-website'

@@ -1,0 +1,130 @@
+---
+title: "Example Analysis of the MPG Dataset"
+author: "Yicheng Shen"
+date: "2024-10-24"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+bibliography: references.bib
+---
+
+## Introduction
+
+There are several interesting default datasets included in popular packages, for instance `mpg` from `ggplot2` [@wickham2016]. In this analysis, I explore the relationship between vehicle characteristics (like engine displacement and highway mileage) and fuel efficiency. The intended audience is for automotive industry looking for insights into vehicle fuel economy.
+
+The `mpg` dataset contains information about different models of cars and their fuel consumption. It can be accessed via the [mpg dataset documentation](https://ggplot2.tidyverse.org/reference/mpg.html) here.
+
+![Fuel efficiency is a big consideration for consumers these days.](fuel.jpg)
+
+## Data Dictionary
+
+Some of the key variables in the dataset that I plan to utilize are:
+
+-   `manufacturer`: Manufacturer name of the vehicle
+-   `displ`: Engine displacement in liters
+-   `hwy`: Highway miles per gallon
+-   `class`: Type of car (SUV, compact, etc.)
+
+::: callout-note
+Larger engines usually produce more power but probably also need to burn more fuel and air [@taylor2008science].\
+Here I define `efficiency` as `hwy`/`displ.`
+:::
+
+## Data Wrangling
+
+```{r}
+#| label: "setup"
+#| include: false
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
+knitr::opts_chunk$set(out.width = "75%", fig.align = 'center')
+
+```
+
+```{r}
+data("mpg")
+mpg_filtered <- mpg %>%
+  filter(class != "2seater") %>%
+  mutate(efficiency = hwy / displ) %>% 
+  group_by(manufacturer) %>%
+  summarize(`avg efficiency` = mean(efficiency, na.rm = TRUE)) %>%
+  arrange(desc(`avg efficiency`))
+```
+
+```{r}
+mpg_filtered %>%
+  kbl(
+    caption = "Average Fuel Efficiency by Manufacturer",
+    col.names = c("Manufacturer", "Average Efficiency (hwy / displ)"),
+    align = "lc",
+    booktabs = TRUE
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    position = "center"
+  ) %>%
+  column_spec(2, bold = TRUE) 
+```
+
+## Visualization
+
+```{r, warning=F}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_smooth(aes(x = displ, y = hwy), method = "lm", formula = y ~ x, se = F) + 
+  geom_point() + 
+  labs(
+    title = "Engine Displacement vs Highway Mileage",
+    subtitle = "Larger engines generally have lower mileage",
+    x = "Engine Displacement (liters)", y = "Highway Miles per Gallon",
+    caption = "There is overall a negative association between engine displacement and highway mileage."
+  )
+```
+
+::: column-margin
+Here the overall relationship is consistent with that within each class. Sometimes a trend can appear in several groups but reverses when the groups are combined, known as the Simpson's paradox [@wagner1982simpson].
+:::
+
+```{r}
+ggplot(mpg, aes(x = hwy, fill = class)) +
+  geom_histogram(bins = 25) +
+  facet_wrap(~class) +
+  labs(
+    title = "Distribution of Highway Mileage by Car Class",
+    x = "Highway Miles per Gallon", y = "Frequency",
+    caption = "SUV and Pickup cars are likely to cost far more fuels on highways than compact and subcompact cars."
+  )
+```
+
+::: callout-tip
+Faceting using `facet_wrap()` in `ggplot2` plot multiple small plots side-by-side, allowing us to visualize data grouped by categories, making comparisons easier.
+:::
+
+```{r}
+ggplot(mpg_filtered, aes(x = reorder(manufacturer, `avg efficiency`), y = `avg efficiency`)) +
+  geom_col(fill = "skyblue") +
+  coord_flip() +
+  labs(
+    title = "Average Fuel Efficiency by Manufacturer",
+    x = "Manufacturer", y = "Average Efficiency (hwy / displ)",
+    caption = "Honda stands out among all manufacturers in terms of average fuel efficiency."
+  )
+```
+
+## Conclusion
+
+From this simple analysis, I can observe that engine displacement can definitively inversely impact highway mileage. Honda cars' performances is distinguishable among all manufacturers in terms of average fuel efficiency. Manufacturers focusing on smaller engines on compact cars tend to achieve better fuel efficiency. Further analysis could include electric and hybrid vehicles to see how they compare.
+
+## Function Summary
+
+Here is a list of functions I used from each package:
+
+From `dplyr` and `tidyr`: `filter()`, `mutate()`, `group_by()`, `summarize()`, `arrange()`
+
+From `ggplot2`: `geom_point()`, `geom_smooth()`, `geom_col()`, `geom_histogram()`, `facet_wrap()`

@@ -1,0 +1,39 @@
+---
+title: "About"
+---
+
+# My Path
+
+I grew up in Wuxi, a relatively small (nickname "little Shanghai") but definitely beautiful and fast-developing city in eastern China. With the desire to explore the unknown and various interesting parts of the world, I went to Carleton College in the U.S. for my undergraduate education. The four-year experience of living and studying in Northfield, Minnesota is such an inspiring, meaningful, and memorable journey for me both mentally and physically. I obtained my B.A. degree in both Statistics and Political Science and graduated with Magna Cum Laude in 2022. My senior theses both received the honor of distinctions.
+
+During my time as an M.S. student in Statistical Science at Duke University, I have actively collaborated on research projects under the guidance of Dr. Alexander Volfovsky and Dr. Hwanhee Hong. These academic experiences have ignited my passion for exploring intricate topics, including ideal point estimation methods, the practical applications and diagnostics of Bayesian hierarchical modeling, and the complexities of causal inference problems. I am acutely aware of the boundless knowledge and challenges that lie ahead in these expansive fields, which continually drive me to dedicate more effort to my academic pursuits.
+
+Apart from academic work, my hobbies are karate, cooking, volunteer work, and book preservation. The last skill came from my four years of working as a part-time student preservation assistant at the Laurence McKinley Gould Library:)
+
+<!-- Please feel free to [download my CV](Yicheng_s_Academic_CV.pdf) to learn more about my background and experience. -->
+
+# Educational Experience
+
+**Johns Hopkins University, Baltimore, MD**
+
+Ph.D. in Biostatistics (2024 - present)
+
+**Duke University, Durham, NC**
+
+M.S. in Statistical Science (2022 - 2024)
+
+Mentors: Dr. [Hwanhee Hong](http://www.hwanheehong.com/the-hong-lab.html) & Dr. [Alexander Volfovsky](https://volfovsky.github.io/labgroup/)
+
+**Carleton College, Northfield, MN**
+
+B.A. in Statistics & Political Science (2018 - 2022)
+
+Mentors: Dr. [Andrew Poppick](https://www.carleton.edu/directory/apoppick/#teaching) & Dr. [Greg Marfleet](https://www.carleton.edu/directory/gmarfleet/)
+
+------------------------------------------------------------------------
+
+Please feel free to download my CV here to learn more about my background and experience.
+
+::: {style="text-align: center; margin-top: 30px;"}
+<a href="Yicheng_s_Academic_CV.pdf" target="_blank" class="cv-link">Curriculum Vitae</a>
+:::

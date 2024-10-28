@@ -1,0 +1,28 @@
+project:
+  type: website
+  title: "My Very New Website"
+
+theme:
+  light: spacelab
+  dark: [Cerulean, theme-dark.scss]
+  
+website:
+  navbar:
+    title: "Yicheng Shen"
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Example Analysis"
+        href: example_analysis.qmd
+    right:
+      - icon: github
+        href: "https://github.com/sheny2"
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/yicheng-shen/"
+      - icon: twitter
+        href: "https://x.com/YichengShen7"
+        
+bibliography: references.bib
+

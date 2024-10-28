@@ -1,0 +1,35 @@
+---
+title: "Yicheng Shen"
+image: ENAR2.jpg
+about:
+  template: trestles
+  links:
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/YichengShen7"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/sheny2"
+    # - text: Email
+    #   icon: mailbox-flag
+    #   url: "yshen128@jh.edu"
+    - text: Linkedin
+      icon: linkedin
+      url: "https://www.linkedin.com/in/yicheng-shen/"
+    # - text: CV
+    #   url: "https://www.overleaf.com/read/zkhjvkdbbpvv"  
+comments: false
+---
+
+# Welcome to My Website!
+
+Welcome! My name is Yicheng Shen, a PhD student in the Department of Biostatistics at Johns Hopkins Bloomberg School of Public Health.\
+Feel free to explore this (newly created) site to learn more about me.
+
+### Research Interests:
+
+Bayesian hierarchical modeling and diagnostics, (network) meta-analysis, latent variable modeling, network analysis, causal inference, interdisciplinary research with applied statistics in health and social sciences.
+
+If you every want to connect with me, please refer to any of the links.
+
+<!-- ![Here is me at the ENAR conference this year!](ENAR.jpg) -->

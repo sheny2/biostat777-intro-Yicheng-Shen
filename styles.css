@@ -1,0 +1,38 @@
+/* css styles */
+
+/* Change background color */
+body {
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+/* Customize the text color */
+h1, h2, h3, p, a {
+  color: #2b2b2b; /* Dark gray text */
+}
+
+/* Navbar background and text colors */
+.navbar {
+  background-color: #005f73; /* Dark teal */
+  color: white;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #94d2bd; /* Light green on hover */
+}
+
+/* Custom styles for social media icons */
+.social-icons a {
+  color: #005f73;
+  margin-right: 15px;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.social-icons a:hover {
+  color: #94d2bd;
+}
