@@ -1,4 +1,6 @@
 - source: project
   quarto-pub:
-    - id: b595b017-5b7f-4dca-846f-719f73f96440
-      url: 'https://yichengshen.quarto.pub/httpsyichengshenquartopubmy-very-new-website'
+    - id: 24239bcb-769c-4b3e-ad19-95aaa188a662
+      url: 'https://yichengshen.quarto.pub/mymy-very-new-website'
+    - id: b40ae613-8db1-44e6-855e-63abbff20c26
+      url: 'https://yichengshen.quarto.pub/my-very-new-website'
