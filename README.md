@@ -1,6 +1,8 @@
 # biostat777-intro-Yicheng-Shen
 
-This is a repo for files of my very new website: https://yichengshen.quarto.pub/my-very-new-website/
+This is a repo for files from my very new website: https://yichengshen.quarto.pub/my-very-new-website/
+
+The repo includes `qmd` files for each of the webpages (Home, About, and Example Data Analysis), as well as all the pictures used. 
 
 You can switch it to dark mode whenever you want! 
 
